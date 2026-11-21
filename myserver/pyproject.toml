@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nuri"
+version = "0.1.19"
+description = "PC 음성 비서 누리 - 호출어/연속 대화/음성 응답"
+requires-python = ">=3.10"
+dependencies = [
+    "sounddevice>=0.4",
+    "numpy>=1.24",
+    "soundfile>=0.12",
+    "faster-whisper>=1.0",
+    "edge-tts>=6.1",
+    "pyttsx3>=2.90",
+    "pystray>=0.19",
+    "pillow>=10",
+    "onnxruntime>=1.17",
+    "pycaw>=20240210; sys_platform == 'win32'",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7", "ruff>=0.4"]
+
+[project.scripts]
+nuri = "nuri.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+nuri = ["assets/vad/*.onnx", "assets/vad/LICENSE"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
